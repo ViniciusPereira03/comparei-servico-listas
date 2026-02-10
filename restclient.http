@@ -1,0 +1,30 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsImlkIjoiNjk3ODE5MDBjOWMxNDhkNDFhYTBkMDQ3IiwidXNlcm5hbWUiOiJ0ZXN0ZSIsInZhbGlkYXRpb25faGFzaCI6IjQ0NjNkMjBlOTY0Nzk5YTY5NWY2NjU2MDBjNjdhMjllIn0.ui2_XtHKjbPZjhi4DFyQ-QvMv2bqEXDCw5_jgy13vsQ
+
+
+###
+# @name postLists
+
+post {{host}}/listas
+Content-Type: application/json
+apiKey: {{apiKey}}
+Authorization: Bearer {{token}}
+
+{
+    "nome": "Lista de Teste"
+}
+
+
+
+###
+# @name getLists
+get {{host}}/listas
+Content-Type: application/json
+apiKey: {{apiKey}}
+Authorization: Bearer {{token}}
+
+###
+# @name getListByID
+get {{host}}/listas/3
+Content-Type: application/json
+apiKey: {{apiKey}}
+Authorization: Bearer {{token}}
