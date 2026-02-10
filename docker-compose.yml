@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: comparei-servico-listas
+    ports:
+      - "8083:8083"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - net_listas
+      - comparei_net
+    command: ["./wait-for-it.sh", "db:3306", "--", "./main"]
+    volumes:
+      - ./tmp:/app/tmp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+  db:
+    image: mysql:8
+    container_name: mysql_listas
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: listasdb
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - net_listas
+    mem_limit: 512m
+    cpus: 0.5
+  redis:
+    image: redis:7
+    container_name: redis_listas
+    command: redis-server --appendonly yes
+    volumes:
+      - ./data/redis:/data
+    networks:
+      - net_listas
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "768M"
+          
+networks:
+  net_listas:
+    driver: bridge
+  
+  comparei_net:
+    external: true

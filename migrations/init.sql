@@ -1,0 +1,28 @@
+CREATE DATABASE IF NOT EXISTS listasdb;
+USE listasdb;
+
+CREATE TABLE IF NOT EXISTS listas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(36) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    status ENUM('ABERTA', 'FECHADA', 'CANCELADA') DEFAULT 'ABERTA',
+    total_previsto DECIMAL(10, 2) DEFAULT 0.00,
+    total_final DECIMAL(10, 2) DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL,
+    INDEX idx_user_status (user_id, status) 
+);
+
+CREATE TABLE IF NOT EXISTS itens_lista (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lista_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    mercado_id INT NULL,
+    quantidade DECIMAL(10, 3) NOT NULL DEFAULT 1.000,
+    preco_unitario DECIMAL(10, 2) DEFAULT 0.00,
+    checked BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL,
+    FOREIGN KEY (lista_id) REFERENCES listas(id) ON DELETE CASCADE
+);

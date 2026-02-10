@@ -1,0 +1,29 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "apiKey": "aNhzb2JaZKHYhYps2Hj0EWtQ9LOVBgHJ7K9evyqjOgJGLbMZERY1ydDTEK4iqToL"
+        },
+        "LOCAL": {
+            "host": "http://localhost:8083",
+            "apiKey": "{{$shared apiKey}}",
+        },
+        "SERVER": {
+            "host": "",
+            "token": "{{$shared apiKey}}"
+        }
+    },
+    "material-icon-theme.folders.associations": {
+        "cron": "powershell",
+        "internal": "home",
+        "migrations": "database",
+        "domain": "mappings",
+        "infrastructure": "server",
+        "http": "public",
+        "dto": "Less",
+        "publisher": "shared",
+        "subscriber": "target"
+    },
+    "material-icon-theme.files.associations": {
+
+    }
+}

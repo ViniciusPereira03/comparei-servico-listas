@@ -1,0 +1,1 @@
+docker exec -it mysql_listas mysql -u root -p
