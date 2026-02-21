@@ -138,6 +138,28 @@ func (h *ListaHandler) GetListaByID(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func (h *ListaHandler) FinalizarID(w http.ResponseWriter, r *http.Request) {
+	userID, err_token := validaToken(w, r)
+	if err_token != nil {
+		sendErrorResponse(w, http.StatusInternalServerError, err_token, "Erro ao refistrar log")
+		return
+	}
+
+	vars := mux.Vars(r)
+	id, _ := strconv.ParseInt(vars["id"], 10, 64)
+
+	err := h.Service.FinalizaLista(id, userID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode("Lista finalizada com sucesso!")
+
+}
+
 func (h *ListaHandler) AddItem(w http.ResponseWriter, r *http.Request) {
 	userID, err_token := validaToken(w, r)
 	if err_token != nil {

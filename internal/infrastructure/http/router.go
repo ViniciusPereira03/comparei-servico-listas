@@ -26,6 +26,7 @@ func NewRouter(handler *ListaHandler) *mux.Router {
 	r.HandleFunc("/listas", handler.GetListas).Methods("GET")
 	r.HandleFunc("/listas", handler.CreateLista).Methods("POST")
 	r.HandleFunc("/listas/{id}", handler.GetListaByID).Methods("GET")
+	r.HandleFunc("/listas/{id}/finalizar", handler.FinalizarID).Methods("PUT")
 	r.HandleFunc("/listas/{id}/itens", handler.AddItem).Methods("POST")
 	r.HandleFunc("/listas/{id}/itens", handler.DelItem).Methods("DELETE")
 	r.HandleFunc("/itens/{item_id}/check", handler.CheckItem).Methods("PUT")

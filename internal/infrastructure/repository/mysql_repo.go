@@ -60,6 +60,12 @@ func (r *MySQLRepository) GetByID(id int64, userID string) (*listas.Lista, error
 	return lista, nil
 }
 
+func (r *MySQLRepository) FinalizaLista(listaID int64, userID string) error {
+	query := "UPDATE listas SET status=? WHERE id=? AND user_id=? AND deleted_at IS NULL"
+	_, err := r.db.Exec(query, listas.StatusFechada, listaID, userID)
+	return err
+}
+
 func (r *MySQLRepository) GetAll(userID string) ([]*listas.Lista, error) {
 	query := "SELECT id, user_id, nome, status, total_previsto, total_final, created_at, updated_at FROM listas WHERE user_id = ? AND deleted_at IS NULL ORDER BY created_at DESC"
 	rows, err := r.db.Query(query, userID)

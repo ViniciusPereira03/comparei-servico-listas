@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsImlkIjoiNjk3ODE5MDBjOWMxNDhkNDFhYTBkMDQ3IiwidXNlcm5hbWUiOiJ0ZXN0ZSIsInZhbGlkYXRpb25faGFzaCI6IjQ0NjNkMjBlOTY0Nzk5YTY5NWY2NjU2MDBjNjdhMjllIn0.ui2_XtHKjbPZjhi4DFyQ-QvMv2bqEXDCw5_jgy13vsQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpbmljaXVzLmdwZXJlaXJhMDNAZ21haWwuY29tIiwiaWQiOiI2OThiZDVkNDExMTY3NmYzODczNTRkYzkiLCJ1c2VybmFtZSI6InZpbmkiLCJ2YWxpZGF0aW9uX2hhc2giOiI0NDYzZDIwZTk2NDc5OWE2OTVmNjY1NjAwYzY3YTI5ZSJ9.UxMhoYSSAF_80SNsT4ijLSkrnUm2bkiJAzvs2Ez1Zd0
 
 
 ###
@@ -24,7 +24,16 @@ Authorization: Bearer {{token}}
 
 ###
 # @name getListByID
-get {{host}}/listas/3
+get {{host}}/listas/1
 Content-Type: application/json
 apiKey: {{apiKey}}
 Authorization: Bearer {{token}}
+
+###
+# @name closeList
+put {{host}}/listas/1/finalizar
+Content-Type: application/json
+apiKey: {{apiKey}}
+Authorization: Bearer {{token}}
+
+{}

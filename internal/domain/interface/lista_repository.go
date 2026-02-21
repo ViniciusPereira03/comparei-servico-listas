@@ -7,6 +7,7 @@ type ListaRepository interface {
 	Create(lista *listas.Lista) (int64, error)
 
 	GetByID(id int64, userID string) (*listas.Lista, error)
+	FinalizaLista(listaID int64, userID string) error
 	GetAll(userID string) ([]*listas.Lista, error)
 	Update(lista *listas.Lista) error
 

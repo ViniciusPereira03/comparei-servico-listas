@@ -92,7 +92,11 @@ func (s *ListaService) ToggleItemCheck(userID string, itemID int64, checked bool
 	return s.recalculateTotals(item.ListaID)
 }
 
-// RF3: Método auxiliar de cálculo
+func (s *ListaService) FinalizaLista(listaID int64, userID string) error {
+	return s.repo.FinalizaLista(listaID, userID)
+}
+
+// Método auxiliar de cálculo
 func (s *ListaService) recalculateTotals(listaID int64) error {
 	// Busca lista completa com itens
 	// Itera somando (Quantidade * Preco)
